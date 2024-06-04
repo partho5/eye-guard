@@ -1,45 +1,153 @@
-.App {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  text-align: center;
-  height: 100%;
-  padding: 10px;
-  background-color: #282c34;
-}
+/* Popup.css */
 
-.App-logo {
-  height: 30vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  height: 100%;
+
+.popup-container {
   display: flex;
   flex-direction: column;
+  //align-items: center;
+  //justify-content: center;
+  height: 100%;
+  padding: 0.5em;
+}
+
+.app-state-toggle-btn{
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+
+.popup-header {
+  margin-bottom: 5px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.popup-logo {
+  width: 40px;
+  height: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.popup-title {
+  font-size: 20px;
+  //margin-top: 10px;
+  margin-left: 10px;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+}
+
+.popup-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.popup-input {
+  width: 50px; /* Adjust width as needed */
+  margin: 0 10px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.popup-unit {
+
+}
+
+.popup-textarea {
+  width: 100%; /* Take up full width */
+  //margin-bottom: 10px;
+  font-family: "Signika Negative", serif;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.popup-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup-button:hover {
+  //background-color: #0056b3;
+}
+
+.action-btns{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+
+/* button save */
+.btn-save {
+  box-shadow:inset 0px 1px 0px 0px #efdcfb;
+  background:linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
+  background-color:#dfbdfa;
+  border-radius:6px;
+  border:1px solid #c584f3;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family: Arial, serif;
+  font-size:15px;
+  font-weight:bold;
+  padding: 4px 20px;
+  text-decoration:none;
+  //text-shadow:0px 1px 0px #000;
+}
+.btn-save:hover {
+  background:linear-gradient(to bottom, #bc80ea 5%, #dfbdfa 100%);
+  background-color:#bc80ea;
+}
+.btn-save:active {
+  position:relative;
+  top:2px;
+}
+
+
+
+.more-options{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: blue;
+  margin-top: 4px;
+}
+.more-options .open-options-page:hover{
+  color: #fd04f9;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+img.icon-settings{
+  width: 30px;
+  height: 30px;
+  margin: 0 30px;
+}
+
+.eta{
+  width: 100%;
+  margin-top: 20px;
+  background-color: #0ca916;
+  border: 1px solid #fff;
+}
+.eta .progress-bar{
+  content: '';
+  display: block;
+  height: 3px;
+  width: 20%;
+  background-color: #000;
+  transition: width 1s /* Add transition for smooth width change */
 }

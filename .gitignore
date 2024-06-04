@@ -12,6 +12,9 @@
 # zip
 /zip
 
+.idea/
+src/assets/img/
+
 # misc
 .DS_Store
 .env.local

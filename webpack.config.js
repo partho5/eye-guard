@@ -35,6 +35,7 @@ if (fileSystem.existsSync(secretsPath)) {
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+
 var options = {
   mode: process.env.NODE_ENV || 'development',
   entry: {

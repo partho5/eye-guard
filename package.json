@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension-boilerplate-react",
-  "version": "5.0.4",
-  "description": "A chrome extension boilerplate built with React 18, Webpack 5, and Webpack Dev Server 4",
+  "name": "Eye Care",
+  "version": "1.0",
+  "description": "Reminds you to take breaks and rest your eyes while working on the computer.",
   "license": "MIT",
   "repository": {
     "type": "git",

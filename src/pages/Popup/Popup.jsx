@@ -28,8 +28,11 @@ const Popup = () => {
   }, []);
 
   const handleIntervalChange = (e) => {
-    const intVal = parseInt(e.target.value, 10); // Convert value to integer
-    setReminderInterval(intVal);
+    try{
+      //when user clears field, attempting to parse value may raise error. In such case no action is taken.
+      const intVal = parseInt(e.target.value, 10); // Convert value to integer
+      setReminderInterval(intVal);
+    }catch (e){}
   };
 
   const saveIntervalMagnitude = (e) => {

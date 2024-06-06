@@ -8,6 +8,7 @@ console.log('Put the background scripts here.');
 chrome.runtime.onInstalled.addListener((details) => {
   console.log('Extension installed or updated:', details);
 
+
   // Perform initialization tasks when the extension is installed or updated
   // For example, set default settings or show a welcome message
 
@@ -69,8 +70,9 @@ function updatePopupUI(message) {
 // Function to show a notification
 const showNotification = (reminderText) => {
   const notificationId = `eyeCareReminder-${Date.now()}`;
+  const autoDismissDelay = 20; //sec
 
-  console.log("notificationId="+notificationId);
+  console.log("notificationId=" + notificationId);
 
   // Create the notification
   chrome.notifications.create(notificationId, {
@@ -80,16 +82,25 @@ const showNotification = (reminderText) => {
     message: reminderText,
     priority: 2
   }, () => {
+    if (chrome.runtime.lastError) {
+      console.error(`Error creating notification: ${chrome.runtime.lastError.message}`);
+      return;
+    }
+
+    console.log(`Notification ${notificationId} created`);
+
     // Set a timeout to auto-dismiss the notification after (n*1000) milliseconds
     setTimeout(() => {
       chrome.notifications.clear(notificationId, (wasCleared) => {
-        if (wasCleared) {
-          console.log(`Notification ${notificationId} auto-dismissed`);
+        if (chrome.runtime.lastError) {
+          console.error(`Error clearing notification: ${chrome.runtime.lastError.message}`);
+        } else if (wasCleared) {
+          console.log(`Notification ${notificationId} auto-dismissed at ${Date.now()}`);
         } else {
           console.log(`Failed to dismiss notification ${notificationId}`);
         }
       });
-    }, 20 * 1000);
+    }, autoDismissDelay * 1000);
   });
 };
 

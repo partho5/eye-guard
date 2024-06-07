@@ -1,8 +1,19 @@
+/* color variable  */
+:root{
+    --input-color: rgba(5, 159, 255, 0.235);
+    --text-color: #000;
+    --title-text: rgb(97, 6, 243);
+
+}
+
 .container {
     width: 700px;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(7, 38, 58, 0.235), 0 6px 20px 0 rgba(5, 159, 255, 0.235);
 }
 .header{
     text-align: center;
@@ -14,34 +25,50 @@
 .title{
     text-align: center;
     padding: 4px 0;
+    
     font-family: "Play", sans-serif;
 }
 
 .section .title{
-    color: #efefef;
+    color: var(--text-color);
 }
-.section-orange .title{
-    color: rgb(230, 88, 1);
-    border-top: 1px solid rgb(248, 184, 124);
-    border-bottom: 1px solid rgb(248, 184, 124);
-    background-color: rgba(251, 225, 199, 0.13);
+
+
+.title{
+    color: var(--title-text) !important;
+    background-color: rgba(157, 215, 251, 0.122) !important;
+    border-top: 1px solid rgba(0, 149, 242, 0.547);
+    border-bottom: 1px solid rgba(0, 149, 242, 0.547);
+    border-radius: 15px;
+    padding: 10px;
+    width: 300px;
+    text-transform: uppercase;
+    margin: 0 auto;
 }
-.section-blue .title{
-    color: #00f;
-    border-top: 1px solid rgb(124, 174, 248);
-    border-bottom: 1px solid rgb(124, 174, 248);
-    background-color: rgba(159, 196, 251, 0.2);
+
+.secondary-title{
+    background-color: var(--input-color);
+    padding: 15px 10px;
+    width: 155px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 20px;
 }
-.section-green .title{
-    color: green;
-    border-top: 1px solid rgb(129, 230, 151);
-    border-bottom: 1px solid rgb(129, 230, 151);
-    background-color: rgba(198, 251, 210, 0.29);
-}
+
 .section .title{
-    //background-color: rgba(239, 239, 239, 0.2);
+    background-color: rgba(239, 239, 239, 0.2);
     /*border-top: 1px solid #ededed;*/
     /*border-bottom: 1px solid #ededed;*/
+}
+
+/* input field */
+.input-field{
+    background-color: var(--input-color);
+    border: none;
+    padding: 5px 15px;
+    border-radius: 15px;
+    margin: 5px;
 }
 
 .section{

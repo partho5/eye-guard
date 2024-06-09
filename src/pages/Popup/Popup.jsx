@@ -130,10 +130,10 @@ const Popup = () => {
   return (
     <div className="popup-container">
       <div className="app-state-toggle-btn" title="Instant disable/enable">
-        <ToggleButton
-          isChecked={isAppToogleChecked}
-          handleToggle={handleToggle}
-        />
+        {/*<ToggleButton*/}
+        {/*  isChecked={isAppToogleChecked}*/}
+        {/*  handleToggle={handleToggle}*/}
+        {/*/>*/}
       </div>
       <div className="popup-header">
         <img src={logo} className="popup-logo" alt="eye care logo" />

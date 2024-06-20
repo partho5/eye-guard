@@ -32,6 +32,7 @@ const Options: React.FC<Props> = ({ title }: Props) => {
               <div className="preference">
                 <span>Auto hide notification after</span>
                 <input
+                className='input-field'
                   type="number"
                   id="auto-hide-notific-input"
                   value={autoHideNotificationTime}
@@ -56,13 +57,14 @@ const Options: React.FC<Props> = ({ title }: Props) => {
               <div className="preference">
                 <span>Disable for next</span>
                 <input
+                className='input-field'
                   type="number"
                   id="disable-time-input"
                   value="24"
                   min="1"
                   max="90"
                 />
-                <select id="disable-time-unit">
+                <select className='input-field' id="disable-time-unit">
                   <option value="minute">minutes</option>
                   <option value="hour">hours</option>
                   <option value="day">days</option>
@@ -72,14 +74,14 @@ const Options: React.FC<Props> = ({ title }: Props) => {
               <div className="preference">
                 <span>Disable when I am visiting these websites</span>
                 <br/>
-                <textarea style={{width:"100%"}}></textarea>
+                <textarea placeholder='https://www.example.com/' className='input-field' style={{width:"80%", height: "100px"}}></textarea>
               </div>
 
               <div className="preference">
                 <span>Do not disturb between</span>
-                <input type="number" />
+                <input className='input-field' style={{width:"10%"}} type="number" />
                 and
-                <input type="number" />
+                <input className='input-field' style={{width:"10%"}}   type="number" />
               </div>
 
             </div>
@@ -89,10 +91,10 @@ const Options: React.FC<Props> = ({ title }: Props) => {
             <div className="title">About</div>
             <div className="body">
               <div className="preference">
-                <u>About this project:</u>
+                <h6 className='secondary-title'>About this project</h6>
                 <div>This CSS will apply the style to the second and third .preference elements, but not the first one.</div>
                 <br/>
-                <u>About developer</u>
+                <h6 className='secondary-title'>About developer</h6>
                 <div>By ensuring that the input value is properly converted to a number, you maintain type safety and ensure that your state reflects the correct data type.</div>
               </div>
             </div>

@@ -148,6 +148,6 @@ img.icon-settings{
   display: block;
   height: 3px;
   width: 20%;
-  background-color: #000;
+  background-color: #f00;
   transition: width 1s /* Add transition for smooth width change */
 }

@@ -77,6 +77,28 @@ var options = {
           },
         ],
       },
+
+
+
+      {
+        // Handle CSS modules
+        test: /\.module\.(css|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+            },
+          },
+          'sass-loader',
+        ],
+      },
+
+
+
+
       {
         test: new RegExp('.(' + fileExtensions.join('|') + ')$'),
         type: 'asset/resource',

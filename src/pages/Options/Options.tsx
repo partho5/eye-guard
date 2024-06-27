@@ -432,7 +432,7 @@ const Options: React.FC<Props> = ({ title }: Props) => {
                     {appDisabledAt && !isCurrentTimeAheadOf(disablePeriodExpireTime(appDisabledAt, disableDurationInMinutes)) &&
                       <span>
                         will be enabled @ &nbsp;
-                        {getAddedTimeHumanReadable(appDisabledAt, disableDurationInMinutes + 0)}
+                        {getAddedTimeHumanReadable(appDisabledAt, disableDurationInMinutes + 1)}
                         {/* just added 1 minute tolerance */}
                       </span>
                     }

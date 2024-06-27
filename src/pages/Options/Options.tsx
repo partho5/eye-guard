@@ -357,7 +357,7 @@ const Options: React.FC<Props> = ({ title }: Props) => {
     <div className="container">
       <div className="header">
         <img src={logo} className="logo" alt="Logo" />
-        <h3 className="font-play-bold">Eye Guard</h3>
+        <h3 className="font-play-bold">Eye Care</h3>
         <h1 className="font-play-bold">Customize to fit your need</h1>
       </div>
 

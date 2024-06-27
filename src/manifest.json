@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Eye Guard",
+  "name": "Eye Care",
   "description": "Reminds you to take breaks and rest your eyes while working on the computer.",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },

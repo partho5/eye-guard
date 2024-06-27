@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logo from '../../assets/img/logo.png';
 import './Popup.css';
-import ToggleButton from '../../Components/ToggleButton/ToggleButton';
+import clcokIcon from '../../assets/img/icon-clock';
 import defaultSettings from '../../Config/defaultSettings';
 
 const Popup = () => {
@@ -142,7 +142,7 @@ const Popup = () => {
       <div className="popup-content">
         <div className="popup-row">
           <img
-            src="https://static.vecteezy.com/system/resources/previews/019/873/851/original/clock-icon-transparent-free-icon-free-png.png"
+            src={clcokIcon}
             className="icon icon-clock" alt="Settings" style={{ width: '50px' }} />
           <label htmlFor="reminder-interval"
                  style={{ textAlign: 'center' }}>

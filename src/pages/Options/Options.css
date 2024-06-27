@@ -142,3 +142,39 @@
 .action.restore:hover{
     background-color: rgba(255, 0, 0, 0.15);
 }
+
+.section-theme .themes{
+    display: flex;
+    align-items: center;
+}
+.section-theme .themes .theme{
+    width: 50%;
+}
+.pop-preview {
+    position: relative;
+    padding: 1em 0.5em;
+}
+
+.theme-tick {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    font-size: 20px;
+    color: #999;
+    background-color: #ddd;
+    padding: 2px 6px;
+    border-radius: 50%;
+    z-index: 2;
+    cursor: pointer;
+    transition: font-size 0.3s, top 0.3s;
+}
+.theme:hover .theme-tick{
+    font-size: 30px;
+    top: 2px;
+}
+.theme .theme-tick.active{
+    background-color: #0be303;
+    color: #000;
+}
+
+

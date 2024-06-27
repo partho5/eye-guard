@@ -48,13 +48,13 @@ const checkConditionAndShowNotification = () => {
   chrome.storage.sync.get(
     [
       'startupTime', 'reminderInterval', 'reminderText', 'notificationAutoHideTime',
-      'appEnableStatus', 'disabledWebsites', 'dndStartTime', 'dndEndTime'
+      'appEnableStatus', 'disabledWebsites', 'isDndEnabled', 'dndStartTime', 'dndEndTime'
     ],
     (result) => {
       console.log('Storage retrieved:', result); // Debugging line
       const {
         startupTime, reminderText, reminderInterval, appEnableStatus, disabledWebsites,
-        dndStartTime, dndEndTime
+        isDndEnabled, dndStartTime, dndEndTime
       } = result;
       const interval = parseInt(reminderInterval, 10) || 60; // Convert to int and set default if NaN
 
@@ -82,11 +82,14 @@ const checkConditionAndShowNotification = () => {
       }
 
 
-      // if current time falls amid DND time
-      const now = new Date();
-      if( isTimeBetween(now, dndStartTime, dndEndTime) ){
-        console.log(`Current time falls amid DND time ${dndStartTime} - ${dndEndTime} . So don't show notification`);
-        return;
+      // check whether DND mode enabled and current time falls amid DND time
+      const dndEnabled = parseBoolean(isDndEnabled);
+      if(dndEnabled){
+        const now = new Date();
+        if( isTimeBetween(now, dndStartTime, dndEndTime) ){
+          console.log(`Current time falls amid DND time ${dndStartTime} - ${dndEndTime} . So don't show notification`);
+          return;
+        }
       }
 
 

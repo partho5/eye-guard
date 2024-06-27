@@ -1,0 +1,36 @@
+/* themes/dark/index.css */
+
+/* Popup.tsx */
+.popup-container.theme-dark{
+    background-color: #000 !important;
+    color: #ccc;
+}
+.theme-dark img.icon {
+    filter: brightness(0) invert(0.8); /* Makes the image bright and inverts its color */
+}
+.popup-container.theme-dark .popup-title{
+    color: #fff;
+}
+.popup-container.theme-dark input,
+.popup-container.theme-dark textarea{
+    background-color: #ccc;
+}
+.popup-container.theme-dark input:hover,
+.popup-container.theme-dark textarea:hover{
+    background-color: #ddd;
+    transition: background-color 0.3s;
+}
+.popup-container.theme-dark .open-options-page{
+    color: #fff;
+}
+.popup-container.theme-dark .open-options-page:hover{
+    color: #09ff01 !important;
+}
+/* Popup.tsx */
+
+
+/* Options.tsx */
+div{
+
+}
+/* Options.tsx */

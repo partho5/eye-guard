@@ -12,6 +12,7 @@ import {
   getAddedTimeHumanReadable,
   isCurrentTimeAheadOf,
 } from '../../utils/timeutils';
+import Popup from '../Popup/Popup';
 
 interface Props {
   title: string;
@@ -496,6 +497,37 @@ const Options: React.FC<Props> = ({ title }: Props) => {
           </div>
 
 
+          <div className="section section-theme">
+            <div className="title">Theme</div>
+            <div className="body">
+              <div className="preference">
+                <div className="themes">
+                  <div className="theme theme-default">
+                    <div className="pop-preview">
+                      <span className="theme-tick active">☑</span>
+                      <Popup
+                        theme="default"
+                        disabled={true}
+                        id="themePreviewDefault"
+                      />
+                    </div>
+                  </div>
+                  <div className="theme theme-dark">
+                    <div className="pop-preview">
+                      <span className="theme-tick">☑</span>
+                      <Popup
+                        theme="dark"
+                        disabled={true}
+                        id="themePreviewDark"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
           <div className="section section-about">
             <div className="title">About</div>
             <div className="body">
@@ -504,12 +536,18 @@ const Options: React.FC<Props> = ({ title }: Props) => {
                 This is a open source project developed for the people like me who are passionate in their works and
                 forget to take rest specially for their eyes.
                 Though there may exist some similar solutions, this is my own effort to create more utility.
+
+                <div>
+                  <br />
+                  <span>Tech stack used:</span> &nbsp;
+                  <span>★Typescript</span>&nbsp; <span>★React.js</span>
+                </div>
               </div>
               <br />
               <div className="secondary-title"><span>About developer</span></div>
               <div className="description">
                 Hello! This is Partho, a full-stack engineer, co-founder of <a href="https://datamatric.com">Data
-                Matric</a>. Alongside full-stack development I am recently focused on building AI solutions.
+                Matric</a>. Alongside full-stack development I am recently focused on building AI driven softwares.
               </div>
             </div>
           </div>

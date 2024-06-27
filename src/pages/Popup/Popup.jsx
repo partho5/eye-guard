@@ -3,10 +3,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logo from '../../assets/img/logo.png';
 import './Popup.css';
+import './Popup.css';
+import '../themes/dark';
 import clcokIcon from '../../assets/img/icon-clock';
 import defaultSettings from '../../Config/defaultSettings';
 
-const Popup = () => {
+
+
+const Popup = ({
+  theme = 'default', id = 'popupView',
+  disabled = false /* clickable by default */
+
+}) => {
   const openSettingsPage = () => {
     chrome.runtime.openOptionsPage();
   };
@@ -95,6 +103,26 @@ const Popup = () => {
 
 
   useEffect(() => {
+    const popupContainer = document.querySelector('.popup-container');
+
+    console.log("theme name", theme);
+
+    if(theme === 'dark'){
+      console.log('dark theme');
+      popupContainer.classList.add('theme-dark');
+      popupContainer.classList.remove('theme-default');
+      popupContainer.style.background = '#000';
+    }else{
+      // default theme
+      console.log('default theme');
+      popupContainer.classList.add('theme-default');
+      popupContainer.classList.remove('theme-dark');
+      popupContainer.style.background = 'linear-gradient(to bottom right, #d1ffff, #ffdbfe)';
+    }
+  }, []);
+
+
+  useEffect(() => {
     const fetchProgressPercent = () => {
       chrome.storage.sync.get(["progressPercent"], (result) => {
         const progressPercent = result.progressPercent;
@@ -128,7 +156,10 @@ const Popup = () => {
   }
 
   return (
-    <div className="popup-container">
+    <div
+      className="popup-container"
+      id={id}
+    >
       <div className="app-state-toggle-btn" title="Instant disable/enable">
         {/*<ToggleButton*/}
         {/*  isChecked={isAppToogleChecked}*/}
@@ -173,7 +204,12 @@ const Popup = () => {
         </div>
 
         <div className="action-btns">
-          <button className="btn-save" onClick={handleSave} title="Your inputs will be saved">Save</button>
+          <button
+            className="btn-save"
+            onClick={handleSave}
+            disabled={disabled}
+            title="Your inputs will be saved"
+          >Save</button>
         </div>
       </div>
 

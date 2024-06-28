@@ -2,7 +2,7 @@
 const defaultSettings = {
 
   /* These are visible in popup view */
-  theme: 'default',
+  theme: 'dark',
   reminderInterval: 60, /* minutes */
   reminderText: "Protect your eyes!\nTake a break...",
 

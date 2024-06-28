@@ -11,7 +11,7 @@ import defaultSettings from '../../Config/defaultSettings';
 
 
 const Popup = ({
-  theme = 'dark', id = 'popupView',
+  theme = 'default', id = 'popupView',
   disabled = false /* clickable by default */
 
 }) => {
@@ -24,7 +24,7 @@ const Popup = ({
   const popupRef = useRef(null);
   const [etaPercent, setEtaPercent] = useState(0);
   const [isAppToogleChecked, setIsAppToogleChecked] = useState(true);
-  const [currentTheme, setCurrentTheme] = useState(theme);
+  const [currentTheme, setCurrentTheme] = useState(defaultSettings.theme);
 
 
   const compRef = useRef(null);
@@ -105,9 +105,10 @@ const Popup = ({
       if (result.userChosenTheme) {
         const savedTheme = result.userChosenTheme;
         if(id === 'popupView'){
-          //this is the main popup view of extension
+          //this is the main popup view of extension.
+          // Hilarious logic. I got an issue in user
           theme = savedTheme === 'default' ? 'dark' : 'default';
-          console.log(`for main pop view applied theme: ${theme}`);
+          //console.log(`for main pop view applied theme: ${theme}`);
         }
 
         if(theme === 'dark'){
@@ -123,6 +124,9 @@ const Popup = ({
           //popupContainer.classList.remove('theme-dark');
           //popupContainer.style.background = 'linear-gradient(to bottom right, #d1ffff, #ffdbfe)';
         }
+      }else{
+        // maybe first run.
+        chrome.storage.sync.set({userChosenTheme: defaultSettings.theme});
       }
     });
   }, []);

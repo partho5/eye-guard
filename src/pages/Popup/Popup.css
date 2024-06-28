@@ -4,9 +4,17 @@
 .popup-container{
   background: linear-gradient(to bottom right, #d1ffff, #ffdbfe);
 }
-.popup-container.theme-default{
-  background: linear-gradient(to bottom right, #d1ffff, #ffdbfe);
+
+.popup-container.theme-dark {
+  background: #000;
+  color: #fff;
 }
+.popup-container.theme-default {
+  background: linear-gradient(to bottom right, #d1ffff, #ffdbfe);
+  color: #000;
+}
+
+
 .popup-container {
   display: flex;
   flex-direction: column;
@@ -137,6 +145,10 @@ input, textarea{
   text-decoration: underline;
 }
 
+.popup-container.theme-default img.icon{
+  filter: brightness(1) invert(0);
+
+}
 img.icon-settings{
   width: 30px;
   height: 30px;

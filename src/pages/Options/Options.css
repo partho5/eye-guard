@@ -176,5 +176,8 @@
     background-color: #0be303;
     color: #000;
 }
+.theme .theme-tick:active{
+    font-size: 20px;
+}
 
 

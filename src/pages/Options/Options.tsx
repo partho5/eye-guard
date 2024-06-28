@@ -38,6 +38,7 @@ const Options: React.FC<Props> = ({ title }: Props) => {
   const [isDndEnabled, setIsDndEnabled] = useState(defaultSettings.isDndEnabled);
   const [isAppToggleBtnEnabled, setIsAppToggleBtnEnabled] = useState(defaultSettings.appEnableStatus);
   const [appDisabledAt, setAppDisabledAt] = useState( new Date() );
+  const [userChosenTheme, setUserChosenTheme] = useState(defaultSettings.theme);
 
 
   const disableFieldOpacity = 0.2;
@@ -46,7 +47,8 @@ const Options: React.FC<Props> = ({ title }: Props) => {
   // at first run, save default values to storage
   useEffect(() => {
     chrome.storage.sync.get([
-      'disabledWebsites', 'isAppToggleBtnEnabled', 'dndStartTime', 'dndEndTime', 'isDndEnabled'
+      'disabledWebsites', 'isAppToggleBtnEnabled', 'dndStartTime', 'dndEndTime', 'isDndEnabled',
+      'userChosenTheme'
     ], (items) => {
       if (items.disabledWebsites === undefined) {
         chrome.storage.sync.set({disabledWebsites: disabledWebsites});
@@ -63,7 +65,13 @@ const Options: React.FC<Props> = ({ title }: Props) => {
       if (items.isDndEnabled === undefined) {
         chrome.storage.sync.set({isDndEnabled: isDndEnabled});
       }
-      console.log(`at first items.isDndEnabled=${items.isDndEnabled}`);
+
+      console.log(`storage get userChosenTheme ${items.userChosenTheme}`);
+
+      if (items.userChosenTheme === undefined) {
+        chrome.storage.sync.set({userChosenTheme: userChosenTheme});
+      }
+      //console.log(`at first items.isDndEnabled=${items.isDndEnabled}`);
     });
   }, []);
 
@@ -80,6 +88,7 @@ const Options: React.FC<Props> = ({ title }: Props) => {
       isDndEnabled: defaultSettings.isDndEnabled,
       appEnableStatus: defaultSettings.appEnableStatus,
       appDisabledAt: new Date(),
+      userChosenTheme: defaultSettings.theme
     };
 
     setNotificationAutoHideTime(newSettings.notificationAutoHideTime);
@@ -92,6 +101,7 @@ const Options: React.FC<Props> = ({ title }: Props) => {
     setIsDndEnabled(newSettings.isDndEnabled);
     setIsAppToggleBtnEnabled(newSettings.appEnableStatus);
     setAppDisabledAt(newSettings.appDisabledAt);
+    setUserChosenTheme(newSettings.userChosenTheme);
 
     chrome.storage.sync.set(newSettings, () => {
       console.log('Default settings restored and saved in Chrome storage.');
@@ -353,6 +363,29 @@ const Options: React.FC<Props> = ({ title }: Props) => {
   }, []);
 
 
+  const handleThemeChosen = (themeName: string) => {
+    console.log(`save theme ${themeName}`);
+    setUserChosenTheme(themeName);
+    chrome.storage.sync.set({userChosenTheme: themeName});
+
+    //debug
+    chrome.storage.sync.get(['userChosenTheme'], (items) => {
+      if(items.userChosenTheme !== undefined){
+        console.log(`check saved userChosenTheme ${items.userChosenTheme}`);
+      }
+    });
+  };
+
+
+  useEffect(() => {
+    chrome.storage.sync.get(['userChosenTheme'], (items) => {
+      if(items.userChosenTheme !== undefined){
+        setUserChosenTheme(items.userChosenTheme);
+        console.log(`userChosenTheme ${items.userChosenTheme}`);
+      }
+    });
+  }, []);
+
 
   return (
     <div className="container">
@@ -504,26 +537,25 @@ const Options: React.FC<Props> = ({ title }: Props) => {
                 <div className="themes">
                   <div className="theme theme-default">
                     <div className="pop-preview">
-                      <span className="theme-tick active">☑</span>
-                      <Popup
-                        theme="default"
-                        disabled={true}
-                        id="themePreviewDefault"
-                      />
+                      <span
+                        className={`theme-tick ${userChosenTheme === 'default' ? 'active' : ''}`}
+                        onClick={() => handleThemeChosen('default')}
+                      >☑</span>
+                      <Popup theme="default" disabled={true} id="theme-default" />
                     </div>
                   </div>
                   <div className="theme theme-dark">
                     <div className="pop-preview">
-                      <span className="theme-tick">☑</span>
-                      <Popup
-                        theme="dark"
-                        disabled={true}
-                        id="themePreviewDark"
-                      />
+                      <span
+                        className={`theme-tick ${userChosenTheme === 'dark' ? 'active' : ''}`}
+                        onClick={() => handleThemeChosen('dark')}
+                      >☑</span>
+                      <Popup theme="dark" disabled={true} id="theme-dark" />
                     </div>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
 
@@ -540,7 +572,7 @@ const Options: React.FC<Props> = ({ title }: Props) => {
                 <div>
                   <br />
                   <span>Tech stack used:</span> &nbsp;
-                  <span>★Typescript</span>&nbsp; <span>★React.js</span>
+                  <span>★Javascript</span>&nbsp; <span>★Typescript</span>&nbsp; <span>★React.js</span>
                 </div>
               </div>
               <br />

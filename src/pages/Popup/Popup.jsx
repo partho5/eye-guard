@@ -11,7 +11,7 @@ import defaultSettings from '../../Config/defaultSettings';
 
 
 const Popup = ({
-  theme = 'default', id = 'popupView',
+  theme = 'dark', id = 'popupView',
   disabled = false /* clickable by default */
 
 }) => {
@@ -24,6 +24,10 @@ const Popup = ({
   const popupRef = useRef(null);
   const [etaPercent, setEtaPercent] = useState(0);
   const [isAppToogleChecked, setIsAppToogleChecked] = useState(true);
+  const [currentTheme, setCurrentTheme] = useState(theme);
+
+
+  const compRef = useRef(null);
 
 
   // Retrieve the reminderInterval value from Chrome storage
@@ -91,34 +95,36 @@ const Popup = ({
 
 
 
-  // useEffect(() => {
-  //   // Listen for messages from the background script
-  //   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  //     if (request.type === 'updateUI') {
-  //       setEtaPercent(request.message);
-  //       sendResponse({status: 'received'});
-  //     }
-  //   });
-  // });
-
-
   useEffect(() => {
     const popupContainer = document.querySelector('.popup-container');
+    chrome.storage.sync.get(['userChosenTheme'], (result) => {
 
-    console.log("theme name", theme);
+      //console.log(`result.userChosenTheme=${result.userChosenTheme}`);
+      //console.log(`popup id =${id}`);
 
-    if(theme === 'dark'){
-      console.log('dark theme');
-      popupContainer.classList.add('theme-dark');
-      popupContainer.classList.remove('theme-default');
-      popupContainer.style.background = '#000';
-    }else{
-      // default theme
-      console.log('default theme');
-      popupContainer.classList.add('theme-default');
-      popupContainer.classList.remove('theme-dark');
-      popupContainer.style.background = 'linear-gradient(to bottom right, #d1ffff, #ffdbfe)';
-    }
+      if (result.userChosenTheme) {
+        const savedTheme = result.userChosenTheme;
+        if(id === 'popupView'){
+          //this is the main popup view of extension
+          theme = savedTheme === 'default' ? 'dark' : 'default';
+          console.log(`for main pop view applied theme: ${theme}`);
+        }
+
+        if(theme === 'dark'){
+          console.log('rendering theme', id);
+          popupContainer.classList.add('theme-dark');
+          popupContainer.classList.remove('theme-default');
+          popupContainer.style.background = '#000';
+        }
+        if(theme === 'default'){
+          // default theme
+          console.log('rendering theme', id);
+          popupContainer.classList.add('theme-default');
+          //popupContainer.classList.remove('theme-dark');
+          //popupContainer.style.background = 'linear-gradient(to bottom right, #d1ffff, #ffdbfe)';
+        }
+      }
+    });
   }, []);
 
 
@@ -159,6 +165,10 @@ const Popup = ({
     <div
       className="popup-container"
       id={id}
+      ref={compRef}
+      onClick={()=>{
+        console.log("clicked theme id", compRef.current.id);
+      }}
     >
       <div className="app-state-toggle-btn" title="Instant disable/enable">
         {/*<ToggleButton*/}

@@ -65,9 +65,6 @@ Eye Care Reminder is a Chrome extension that helps you protect your eyesight by 
 
 Feel free to fork this repository, make changes, and submit a pull request. We welcome all improvements and suggestions!
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 

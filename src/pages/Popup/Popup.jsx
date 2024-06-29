@@ -198,8 +198,9 @@ const Popup = ({
             id="reminder-interval"
             className="popup-input"
             value={reminderInterval}
-            min={1}
-            max={8 * 60}
+            min={10}
+            max={4 * 60}
+            step={10}
             onChange={handleIntervalChange}
             onMouseLeave={saveIntervalMagnitude}
           />

@@ -8,7 +8,6 @@
     "storage",
     "notifications",
     "background",
-    "scripting",
     "tabs",
     "activeTab",
     "alarms"
